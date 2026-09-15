@@ -1,0 +1,17 @@
+# Frontend Vue 3 + Vite (Overskull). Sirve dist/ con Nginx en :5173.
+# Uso:
+#   docker compose up -d --build
+#   VITE_API_URL=http://localhost:8080/api docker compose up -d --build  # API en otra URL
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8080/api}
+        VITE_APP_NAME: ${VITE_APP_NAME:-Overskull - Gestion de Productos}
+    image: overskull-frontend
+    container_name: overskull_frontend_web
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
