@@ -1,0 +1,8 @@
+# Evita que el .env local (pensado para `npm run dev` con :8000)
+# se cuele en la imagen Docker o pise el ARG de compilacion.
+.env
+.env.*
+!.env.example
+node_modules
+dist
+.git
